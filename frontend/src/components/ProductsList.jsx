@@ -6,33 +6,35 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
-const ProductsList = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
-
-    setProducts(data);
-  };
-
+const ProductsList = ({ products, onAddToCart }) => {
   return (
-    <div className="flex">
+    <Container
+      maxWidth="lg"
+      sx={{
+        display: "grid",
+        gridTemplateColumns: "repeat(3, 1fr)",
+        gap: 6,
+        marginTop: 15,
+      }}
+    >
       {products.map((product, key) => {
         return (
-          <Card key={key} sx={{ maxWidth: 345, paddingBottom: 2 }}>
+          <Card key={key} sx={{ paddingBottom: 2, width: "100%" }}>
             <CardMedia
               component="img"
               alt="green iguana"
               className="h-64"
               image={product.image.url}
             />
-            <CardContent sx={{ paddingTop: 3 }}>
-              <Typography gutterBottom variant="h5" component="div">
+            <CardContent sx={{ padding: "24px 20px 0 20px" }}>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                sx={{ minHeight: "65px" }}
+              >
                 {product.name}
               </Typography>
 
@@ -45,15 +47,15 @@ const ProductsList = () => {
                 {product.price.formatted_with_symbol}
               </Typography>
 
-              <Typography variant="body2" color="text.secondary">
+              {/* <Typography variant="body2" color="text.secondary">
                 {product.description.replace(/<([^>]+>)/gi, "")}
-              </Typography>
+              </Typography> */}
             </CardContent>
-            <CardActions>
+            <CardActions sx={{ padding: "24px 20px 10px 20px" }}>
               <Button
                 size="small"
                 onClick={() => {
-                  console.log("hi");
+                  onAddToCart(product.id, 1);
                 }}
               >
                 In winkelmand
@@ -62,7 +64,7 @@ const ProductsList = () => {
           </Card>
         );
       })}
-    </div>
+    </Container>
   );
 };
 
