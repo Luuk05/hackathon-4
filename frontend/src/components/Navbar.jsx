@@ -13,9 +13,10 @@ const Navbar = ({ totalItems }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
-        <Toolbar>
+        <Toolbar sx={{ display: "flex", gap: 2 }}>
+          <Link to="/">Home</Link>
           <Button color="inherit">
-            <Link to="/checkout">
+            <Link to="/cart">
               <Badge badgeContent={totalItems} color="warning">
                 <ShoppingCartIcon />
               </Badge>
