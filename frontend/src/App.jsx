@@ -55,7 +55,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <Navbar totalItems={cart.total_items} />
+      <Navbar totalItems={cart?.total_items} />
       <Routes>
         <Route
           path="/"
