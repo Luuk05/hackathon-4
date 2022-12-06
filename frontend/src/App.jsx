@@ -51,8 +51,6 @@ const App = () => {
     fetchProducts();
   }, []);
 
-  console.log(cart);
-
   return (
     <div className="app">
       <Navbar totalItems={cart?.total_items} />
@@ -61,7 +59,12 @@ const App = () => {
           path="/"
           element={<Home products={products} onAddToCart={handleAddToCart} />}
         />
-        <Route path="/cart" element={<Cart cart={cart} />} />
+        <Route
+          path="/cart"
+          element={
+            <Cart cart={cart} handleUpdateCartQty={handleUpdateCartQty} />
+          }
+        />
       </Routes>
     </div>
   );
