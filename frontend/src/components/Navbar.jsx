@@ -13,7 +13,15 @@ const Navbar = ({ totalItems }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
-        <Toolbar sx={{ display: "flex", gap: 2 }}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            gap: 2,
+            width: "100%",
+            maxWidth: 1200,
+            marginInline: "auto",
+          }}
+        >
           <Link to="/">Home</Link>
           <Button color="inherit">
             <Link to="/cart">
